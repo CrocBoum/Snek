@@ -15,6 +15,10 @@ public:
 	Board(const Vec2& pos_in);
 	void Draw(Graphics& gfx) const;
 	const Content GetContent(const Vec2& loc) const;
+	const Vec2 GetPos() const { return pos; }
+	const int GetWidth() const { return width; }
+	const int GetHeight() const { return height; }
+	const int GetTileSize() const { return tileSize; }
 	void SpawnContent(const Vec2& loc, Content contentType);
 private:
 	static constexpr int width = 35;
