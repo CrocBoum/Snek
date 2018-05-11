@@ -4,6 +4,7 @@
 #include "Mouse.h"
 #include "Graphics.h"
 #include "FrameTimer.h"
+#include "Board.h"
 
 
 class Game {
@@ -16,7 +17,9 @@ private:
 	void ComposeFrame();
 	void UpdateModel(const float dt);
 private:
+	static constexpr int tileSize = 10;
 	MainWindow& wnd;
 	Graphics gfx;
 	FrameTimer ft;
+	Board brd;
 };

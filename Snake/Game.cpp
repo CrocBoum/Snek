@@ -5,7 +5,8 @@
 Game::Game(MainWindow& wnd) :
 	wnd(wnd),
 	gfx(wnd),
-	ft() {
+	ft(),
+	brd({50.0f, 50.0f}) {
 
 }
 
@@ -22,5 +23,5 @@ void Game::UpdateModel(const float dt) {
 }
 
 void Game::ComposeFrame() {
-
+	brd.Draw(gfx);
 }
