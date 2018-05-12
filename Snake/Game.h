@@ -20,10 +20,9 @@ private:
 	void ComposeFrame();
 	void UpdateModel(const float dt);
 private:
-	static constexpr int tileSize = 10;
-	static constexpr int nFood = 10;
-	static constexpr int nPoison = 100;
-	static constexpr int nObstacles = 10;
+	static constexpr int nFood = 15;
+	static constexpr int nPoison = 200;
+	static constexpr int nObstacles = 15;
 	static constexpr float snekMovePeriod = 0.3f;
 	static constexpr float poisonSpawnPeriod = 10.0f;
 	static constexpr bool sound = true;

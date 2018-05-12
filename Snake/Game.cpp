@@ -8,7 +8,7 @@ Game::Game(MainWindow& wnd) :
 	gfx(wnd),
 	ft(),
 	rng(std::random_device()()),
-	brd({ 50.0f, 50.0f }),
+	brd({ 40.0f, 45.0f }),
 	snek({ 1.0f, 1.0f }),
 	deltaLoc({ 1.0f, 0.0f }) {
 
@@ -108,7 +108,7 @@ void Game::UpdateModel(const float dt) {
 				brd.SpawnRandomContents(rng, Board::Content::Obstacle, 1, snek, deltaLoc);
 				brd.RemoveContent(nextLoc);
 				if (sound) {
-					sfxEat.Play(rng, 1.0f);
+					sfxEat.Play(rng, 0.4f);
 				}
 				break;
 			case Board::Content::Poison:

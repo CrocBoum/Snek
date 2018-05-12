@@ -25,10 +25,10 @@ public:
 	void SpawnRandomContents(std::mt19937 rng, Content contentType, int amount, class Snake& snek, const Vec2& deltaLoc);
 	void RemoveContent(const Vec2& loc);
 private:
-	static constexpr int width = 35;
-	static constexpr int height = 25;
+	static constexpr int width = 48;
+	static constexpr int height = 34;
 	static constexpr int nCells = width * height;
-	static constexpr int tileSize = 20;
+	static constexpr int tileSize = 15;
 	static constexpr int borderSize = 5;
 	Vec2 pos;
 	Content contents[nCells] = { Content::Empty };
