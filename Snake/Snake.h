@@ -11,6 +11,12 @@ public:
 	void Draw(Graphics& gfx, const Board& brd) const;
 	void MoveBy(const Vec2& deltaLoc);
 	void MoveAndGrowBy(const Vec2& deltaLoc, const int len);
+	void MoveAndShrinkBy(const Vec2& deltaLoc, const int len);
+	Vec2 GetHeadLoc() const { return tail[0]; }
+	Vec2 GetNextHeadLoc(const Vec2& deltaLoc) const;
+	bool HeadIsOn(const Vec2& loc) const;
+	bool IsOn(const Vec2& loc) const;
+	bool IsOnWithoutEnd(const Vec2& loc) const;
 	const int GetLength() const { return length; }
 	const int GetMaxLength() const { return maxLength; }
 private:

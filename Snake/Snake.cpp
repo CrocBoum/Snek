@@ -32,7 +32,42 @@ void Snake::MoveBy(const Vec2& deltaLoc) {
 void Snake::MoveAndGrowBy(const Vec2& deltaLoc, const int len) {
 	assert(length < maxLength);
 
-	tail[length] = tail[length - 1];
+	for (int i = 0; i < len; i++) {
+		tail[length + i] = tail[length - 1 + i];
+	}
 	MoveBy(deltaLoc);
-	length++;
+	length += len;
+}
+
+void Snake::MoveAndShrinkBy(const Vec2& deltaLoc, const int len) {
+	assert(length > len);
+
+	length -= len;
+	MoveBy(deltaLoc);
+}
+
+Vec2 Snake::GetNextHeadLoc(const Vec2& deltaLoc) const {
+	return tail[0] + deltaLoc;
+}
+
+bool Snake::HeadIsOn(const Vec2& loc) const {
+	return tail[0] == loc;
+}
+
+bool Snake::IsOn(const Vec2& loc) const {
+	for (int i = 0; i < length; i++) {
+		if (tail[i] == loc) {
+			return true;
+		}
+	}
+	return false;
+}
+
+bool Snake::IsOnWithoutEnd(const Vec2& loc) const {
+	for (int i = 0; i < length - 1; i++) {
+		if (tail[i] == loc) {
+			return true;
+		}
+	}
+	return false;
 }
