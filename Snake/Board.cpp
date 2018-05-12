@@ -1,6 +1,7 @@
 #include "Board.h"
 
 #include <assert.h>
+#include "Snake.h"
 
 
 Board::Board(const Vec2& pos_in):
@@ -41,9 +42,39 @@ const Board::Content Board::GetContent(const Vec2& loc) const {
 	return contents[int(loc.y) * width + int(loc.x)];
 }
 
-void Board::SpawnContent(const Vec2& loc, Content contentType) {
+bool Board::IsOutSide(const Vec2& loc) {
+	return loc.x < 0 || loc.x >= width || loc.y < 0 || loc.y >= height;
+}
+
+void Board::SpawnContent(const Vec2& loc, Content contentType, Snake& snek, const Vec2& deltaLoc) {
 	assert(contents[int(loc.y) * width + int(loc.x)] == Content::Empty);
 	assert(contentType != Content::Empty);
+	assert(!snek.IsOn(loc));
+	assert(snek.GetNextHeadLoc(deltaLoc) != loc);
 
 	contents[int(loc.y) * width + int(loc.x)] = contentType;
+}
+
+void Board::SpawnRandomContents(std::mt19937 rng, Content contentType, int amount, Snake& snek, const Vec2& deltaLoc) {
+	std::uniform_int_distribution<int> xDist = std::uniform_int_distribution<int>(0, width - 1);
+	std::uniform_int_distribution<int> yDist = std::uniform_int_distribution<int>(0, height - 1);
+
+	for (int i = 0; i < amount; i++) {
+		bool valid = false;
+		Vec2 newLoc;
+		do {
+			newLoc = { float(xDist(rng)), float(yDist(rng)) };
+			if (contents[int(newLoc.y) * width + int(newLoc.x)] == Content::Empty && snek.GetNextHeadLoc(deltaLoc) != newLoc && !snek.IsOn(newLoc)) {
+				valid = true;
+			}
+		} while (!valid);
+
+		SpawnContent(newLoc, contentType, snek, deltaLoc);
+	}
+}
+
+void Board::RemoveContent(const Vec2& loc) {
+	assert(contents[int(loc.y) * width + int(loc.x)] != Content::Empty);
+
+	contents[int(loc.y) * width + int(loc.x)] = Content::Empty;
 }
