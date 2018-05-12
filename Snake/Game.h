@@ -21,8 +21,12 @@ private:
 	void UpdateModel(const float dt);
 private:
 	static constexpr int tileSize = 10;
+	static constexpr int nFood = 10;
+	static constexpr int nPoison = 100;
+	static constexpr int nObstacles = 10;
 	static constexpr float snekMovePeriod = 0.3f;
-	static constexpr bool sound = false;
+	static constexpr float poisonSpawnPeriod = 10.0f;
+	static constexpr bool sound = true;
 	MainWindow& wnd;
 	Graphics gfx;
 	FrameTimer ft;
@@ -37,5 +41,7 @@ private:
 	SoundEffect sfxFart = SoundEffect({ L"Sounds\\Fart.wav" });
 	bool gameStarted = false;
 	bool gameOver = false;
+	bool moveInhibit = false;   // Stops user from changing movement direction multiple times before snek actually moves
 	float snekMoveCounter = 0.0f;   // Measures time for Snek Movement
+	float poisonSpawnCounter = 0.0f;
 };
