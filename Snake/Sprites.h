@@ -4,6 +4,6 @@
 
 class Sprites {
 public:
-	static void DrawGameOver(int x, int y, Graphics& gfx);
-	static void DrawTitle(int x, int y, Graphics& gfx);
+	static void DrawGameOver(int x, int y, Graphics& gfx);   // 350, 265 for screen center
+	static void DrawTitle(int x, int y, Graphics& gfx);   // 290, 225 for screen center
 };
